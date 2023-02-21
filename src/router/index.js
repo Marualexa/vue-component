@@ -4,7 +4,8 @@ import HomeView from '../views/HomeView.vue';
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', name: 'home', component: HomeView },
+    // { path: '/home', redirect: { name: 'home' } },
+    { path: '/', name: 'home', component: HomeView, alias: '/home' },
     {
       path: '/session', component: () =>
         import('../views/SeccionView.vue'),
@@ -23,7 +24,14 @@ const router = createRouter({
       path: '/chats',
       component: () => import('../views/ChatsView.vue'),
       children: [
-        { path: ':chatId', component: () => import('../views/ChatView.vue') }
+        {
+          path: ':chatId', component: () => import('../views/ChatView.vue'),
+          props: (route) => {
+            return {
+              chatId: route.params.chatId
+            }
+          }
+        }
       ]
     }
   ]
