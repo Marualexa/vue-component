@@ -37,4 +37,13 @@ const router = createRouter({
   ]
 })
 
+router.beforeEach((to, from) => {
+  console.log(to, from)
+  
+  if (from.path === '/') return { name: 'abountView' }
+  // if (from.path === '/') return '/abount'
+  return true;
+  //return false
+})
+
 export default router
