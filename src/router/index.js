@@ -41,13 +41,13 @@ const router = createRouter({
 router.beforeEach((to, from) => {
   console.log(to, from)
 
-  if (to.meta?.requiresAuth && to.meta.roles.includes('admin')) {
-    console.log(to.path, 'requires auth')
-    return '/seccion'
-  }
+  // if (to.meta?.requiresAuth && to.meta.roles.includes('admin')) {
+  //   console.log(to.path, 'requires auth')
+  //   return '/seccion'
+  // }
   
-  if (from.path === '/') return { name: 'abountView' }
-  // if (from.path === '/') return '/abount'
+  // if (from.path === '/') return { name: 'abountView' }
+  // // if (from.path === '/') return '/abount'
   return true;
   //return false
 })
