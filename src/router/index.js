@@ -1,10 +1,14 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
+import ErrorView from '../views/404View.vue';
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
     // { path: '/home', redirect: { name: 'home' } },
+
+    { path: '/404', component: ErrorView },
+    { path: '/:catchAll(.*)', redirect: '/404' },
     { path: '/', name: 'home', component: HomeView, alias: '/home', meta: { requiresAuth: false }},
     {
       path: '/session', component: () =>
@@ -26,7 +30,7 @@ const router = createRouter({
       meta: { requiresAuth: true, roles: ['admin'] },
       children: [
         {
-          path: ':chatId', component: () => import('../views/ChatView.vue'),
+          path: ':chatId(\\d+)', component: () => import('../views/ChatView.vue'),
           props: (route) => {
             return {
               chatId: route.params.chatId
