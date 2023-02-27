@@ -8,7 +8,7 @@
             </div>
         </aside>
         <article>
-            Mensaje
+            {{ this.$router.params.chatsId }}
         </article>
     </div>
 </template>
